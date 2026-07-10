@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>아화중학교 박제민</title>
+<title>과학 프로젝트</title>
 
 <style>
 *{
@@ -13,86 +13,116 @@
 }
 
 body{
+    font-family:'맑은 고딕',sans-serif;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    overflow:hidden;
-    font-family:'Pretendard', sans-serif;
-    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+
+    /* 배경사진 */
+    background-image:url("background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
-/* 배경 */
-.background{
-    position:absolute;
-    width:100%;
-    height:100%;
-    overflow:hidden;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,20,60,0.45);
 }
 
-/* 공룡 이모지 */
-.dino{
-    position:absolute;
-    font-size:90px;
-    opacity:0.08;
-    animation:float 12s infinite ease-in-out;
-}
-
-.d1{top:10%;left:8%;}
-.d2{top:65%;left:15%;animation-delay:2s;}
-.d3{top:25%;right:10%;animation-delay:4s;}
-.d4{bottom:10%;right:20%;animation-delay:6s;}
-.d5{top:45%;left:45%;animation-delay:8s;}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0) rotate(0deg);
-    }
-    50%{
-        transform:translateY(-30px) rotate(8deg);
-    }
-}
-
-/* 카드 */
-.card{
+.box{
     position:relative;
-    z-index:10;
-    padding:60px 90px;
-    border-radius:25px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(12px);
-    box-shadow:0 10px 35px rgba(0,0,0,0.35);
+    z-index:1;
+    width:700px;
+    padding:40px;
     text-align:center;
+
+    background:rgba(0,0,50,0.45);
+    border:2px solid #00ffff;
+    border-radius:20px;
+    box-shadow:0 0 25px cyan;
 }
 
 h1{
-    color:white;
-    font-size:60px;
-    letter-spacing:3px;
-    text-shadow:0 0 15px #38bdf8;
+    color:#00ffff;
+    font-size:48px;
+    text-shadow:0 0 15px cyan;
 }
 
-p{
-    color:#cbd5e1;
-    margin-top:18px;
-    font-size:22px;
+.line{
+    width:100%;
+    height:2px;
+    background:#00ffff;
+    margin:20px 0;
+}
+
+.info{
+    color:white;
+    font-size:28px;
+    line-height:60px;
+}
+
+.footer{
+    color:#8efcff;
+    margin-top:30px;
+    letter-spacing:4px;
+}
+
+.circle{
+    position:absolute;
+    border:2px solid rgba(0,255,255,.5);
+    border-radius:50%;
+    animation:spin 10s linear infinite;
+}
+
+.c1{
+    width:180px;
+    height:180px;
+    top:-90px;
+    right:-90px;
+}
+
+.c2{
+    width:120px;
+    height:120px;
+    bottom:-60px;
+    left:-60px;
+    animation-duration:6s;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
 }
 </style>
-
 </head>
+
 <body>
 
-<div class="background">
-    <div class="dino d1">🦖</div>
-    <div class="dino d2">🦕</div>
-    <div class="dino d3">🦖</div>
-    <div class="dino d4">🦕</div>
-    <div class="dino d5">🦖</div>
+<div class="box">
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+
+<h1>🔬 SCIENCE PROFILE 🔬</h1>
+
+<div class="line"></div>
+
+<div class="info">
+    <p>🏫 학교 : <strong>아화증학교</strong></p>
+    <p>👤 이름 : <strong>박제민</strong></p>
+    <p>🧪 주제 : 미래 과학 연구</p>
 </div>
 
-<div class="card">
-    <h1>아화중학교 박제민</h1>
-    <p>🦖 Dinosaur Theme 🦕</p>
+<div class="line"></div>
+
+<div class="footer">
+SCIENCE • TECHNOLOGY • FUTURE
+</div>
+
 </div>
 
 </body>
