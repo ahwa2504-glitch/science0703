@@ -2,120 +2,144 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>과학 프로젝트</title>
+<title>박제민 과학 페이지</title>
 
 <style>
+
+/* ⭐ 여기 사진 파일 이름만 바꾸세요 */
+body{
+    background-image:url("background.jpg.png");
+}
+
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+
 body{
-    font-family:'맑은 고딕',sans-serif;
     height:100vh;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
     display:flex;
     justify-content:center;
     align-items:center;
 
-    /* 배경사진 */
-    background-image:url("background.jpg");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    font-family:'맑은 고딕',sans-serif;
 }
+
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
-    background:rgba(0,20,60,0.45);
+    background:rgba(0,15,40,0.55);
 }
 
-.box{
+
+.container{
     position:relative;
     z-index:1;
-    width:700px;
-    padding:40px;
-    text-align:center;
 
-    background:rgba(0,0,50,0.45);
-    border:2px solid #00ffff;
-    border-radius:20px;
-    box-shadow:0 0 25px cyan;
+    width:700px;
+    padding:45px;
+
+    text-align:center;
+    color:white;
+
+    background:rgba(0,20,60,0.5);
+
+    border:2px solid cyan;
+    border-radius:25px;
+
+    box-shadow:0 0 35px cyan;
 }
+
 
 h1{
+    font-size:50px;
     color:#00ffff;
-    font-size:48px;
-    text-shadow:0 0 15px cyan;
+    text-shadow:0 0 20px cyan;
 }
+
 
 .line{
-    width:100%;
     height:2px;
     background:#00ffff;
-    margin:20px 0;
+    margin:25px 0;
 }
 
-.info{
-    color:white;
+
+p{
     font-size:28px;
-    line-height:60px;
+    line-height:55px;
 }
+
+
+/* START 버튼 */
+.start{
+    margin-top:35px;
+
+    padding:15px 60px;
+
+    font-size:25px;
+    font-weight:bold;
+
+    color:white;
+    background:transparent;
+
+    border:2px solid cyan;
+    border-radius:50px;
+
+    cursor:pointer;
+
+    box-shadow:0 0 20px cyan;
+
+    transition:0.3s;
+}
+
+
+.start:hover{
+    background:#00ffff;
+    color:#002040;
+    box-shadow:0 0 40px cyan;
+    transform:scale(1.1);
+}
+
 
 .footer{
-    color:#8efcff;
     margin-top:30px;
-    letter-spacing:4px;
+    color:#8fffff;
+    letter-spacing:5px;
 }
 
-.circle{
-    position:absolute;
-    border:2px solid rgba(0,255,255,.5);
-    border-radius:50%;
-    animation:spin 10s linear infinite;
-}
 
-.c1{
-    width:180px;
-    height:180px;
-    top:-90px;
-    right:-90px;
-}
-
-.c2{
-    width:120px;
-    height:120px;
-    bottom:-60px;
-    left:-60px;
-    animation-duration:6s;
-}
-
-@keyframes spin{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
 </style>
+
 </head>
+
 
 <body>
 
-<div class="box">
+<div class="container">
 
-<div class="circle c1"></div>
-<div class="circle c2"></div>
-
-<h1>🔬 SCIENCE PROFILE 🔬</h1>
+<h1>🔬 SCIENCE PROFILE</h1>
 
 <div class="line"></div>
 
-<div class="info">
-    <p>🏫 학교 : <strong>아화증학교</strong></p>
-    <p>👤 이름 : <strong>박제민</strong></p>
-    <p>🧪 주제 : 미래 과학 연구</p>
-</div>
+<p>🏫 학교 : <b>아화증학교</b></p>
+<p>👤 이름 : <b>박제민</b></p>
+<p>🧪 분야 : 미래 과학 연구</p>
+
+
+<button class="start" onclick="startPage()">
+START
+</button>
+
 
 <div class="line"></div>
 
@@ -124,6 +148,16 @@ SCIENCE • TECHNOLOGY • FUTURE
 </div>
 
 </div>
+
+
+<script>
+
+function startPage(){
+    alert("과학 연구를 시작합니다!");
+}
+
+</script>
+
 
 </body>
 </html>
