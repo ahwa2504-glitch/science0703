@@ -15,87 +15,290 @@
 body{
     overflow:hidden;
     height:100vh;
-    background:radial-gradient(circle at center,#001133,#000814,#000000);
-    font-family:'맑은 고딕',sans-serif;
+    font-family:"맑은 고딕",sans-serif;
+    background:
+    radial-gradient(circle at top,#16386d 0%,#050b25 40%,#000 100%);
 }
 
 /* 제목 */
+
 .title{
     position:absolute;
+    top:25px;
     width:100%;
-    top:40px;
     text-align:center;
     color:white;
     font-size:42px;
     font-weight:bold;
-    text-shadow:0 0 10px cyan,0 0 20px blue;
-    z-index:10;
+    text-shadow:
+    0 0 10px cyan,
+    0 0 20px cyan,
+    0 0 35px blue;
+    z-index:100;
+}
+
+/* 왼쪽 메뉴 */
+
+.menu{
+    position:absolute;
+    left:20px;
+    top:110px;
+    width:210px;
+    background:rgba(0,40,80,.4);
+    backdrop-filter:blur(10px);
+    border:2px solid cyan;
+    border-radius:15px;
+    box-shadow:0 0 20px cyan;
+    padding:15px;
+    z-index:100;
+}
+
+.menu h2{
+    color:#00ffff;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.menu ul{
+    list-style:none;
+}
+
+.menu li{
+    margin:8px 0;
+}
+
+.menu a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:10px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.menu a:hover{
+    background:#00ffff55;
+    transform:translateX(10px);
+    box-shadow:0 0 15px cyan;
 }
 
 /* 별 */
+
 .star{
     position:absolute;
     color:white;
     animation:twinkle linear infinite;
-    opacity:0.8;
 }
 
 @keyframes twinkle{
-    0%{
-        transform:translateY(0px) scale(0.8);
-        opacity:0.3;
-    }
-    50%{
-        opacity:1;
-        transform:translateY(-20px) scale(1.2);
-    }
-    100%{
-        transform:translateY(0px) scale(0.8);
-        opacity:0.3;
-    }
+
+0%{
+opacity:.2;
+transform:scale(.6);
 }
 
-/* 지구 */
+50%{
+opacity:1;
+transform:scale(1.3);
+}
+
+100%{
+opacity:.2;
+transform:scale(.6);
+}
+
+}
+
+/* 유성 */
+
+.meteor{
+
+position:absolute;
+width:2px;
+height:100px;
+
+background:linear-gradient(white,transparent);
+
+transform:rotate(45deg);
+
+animation:meteor linear infinite;
+
+opacity:.8;
+
+}
+
+@keyframes meteor{
+
+0%{
+
+transform:translate(0,0) rotate(45deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translate(-900px,900px) rotate(45deg);
+
+opacity:0;
+
+}
+
+}
+
+/* 행성 */
+
 .earth{
-    position:absolute;
-    left:80px;
-    bottom:120px;
-    font-size:90px;
+
+position:absolute;
+
+left:260px;
+
+bottom:80px;
+
+font-size:110px;
+
+filter:drop-shadow(0 0 25px cyan);
+
 }
 
-/* 달 */
 .moon{
-    position:absolute;
-    right:80px;
-    top:120px;
-    font-size:70px;
+
+position:absolute;
+
+right:100px;
+
+top:100px;
+
+font-size:80px;
+
+filter:drop-shadow(0 0 20px white);
+
 }
 
 /* 우주선 */
+
 .rocket{
-    position:absolute;
-    left:120px;
-    bottom:150px;
-    font-size:55px;
-    animation:fly 8s linear infinite;
+
+position:absolute;
+
+font-size:55px;
+
+animation:rocketMove 9s linear infinite;
+
+transform-origin:center;
+
+z-index:80;
+
 }
 
-@keyframes fly{
-    0%{
-        left:120px;
-        bottom:150px;
-        transform:rotate(-20deg);
-    }
-    50%{
-        transform:rotate(-5deg);
-    }
-    100%{
-        left:calc(100% - 180px);
-        bottom:calc(100% - 170px);
-        transform:rotate(20deg);
-    }
+/* 불꽃 */
+
+.rocket::after{
+
+content:"🔥";
+
+position:absolute;
+
+right:40px;
+
+top:12px;
+
+font-size:28px;
+
+animation:fire .15s infinite alternate;
+
 }
+
+@keyframes fire{
+
+from{
+
+transform:scale(.8);
+
+opacity:.6;
+
+}
+
+to{
+
+transform:scale(1.2);
+
+opacity:1;
+
+}
+
+}
+
+/* 곡선 비행 */
+
+@keyframes rocketMove{
+
+0%{
+
+left:330px;
+
+bottom:150px;
+
+transform:rotate(-15deg);
+
+}
+
+20%{
+
+left:520px;
+
+bottom:330px;
+
+transform:rotate(-25deg);
+
+}
+
+40%{
+
+left:800px;
+
+bottom:470px;
+
+transform:rotate(-5deg);
+
+}
+
+60%{
+
+left:1100px;
+
+bottom:520px;
+
+transform:rotate(5deg);
+
+}
+
+80%{
+
+left:1350px;
+
+bottom:620px;
+
+transform:rotate(18deg);
+
+}
+
+100%{
+
+left:calc(100vw - 170px);
+
+bottom:calc(100vh - 180px);
+
+transform:rotate(25deg);
+
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
@@ -104,26 +307,75 @@ body{
 아화중학교 2-1 박제민
 </div>
 
+<div class="menu">
+
+<h2>🔬 과학</h2>
+
+<ul>
+
+<li><a href="#">1단원</a></li>
+<li><a href="#">2단원</a></li>
+<li><a href="#">3단원</a></li>
+<li><a href="#">4단원</a></li>
+<li><a href="#">5단원</a></li>
+<li><a href="#">6단원</a></li>
+<li><a href="#">7단원</a></li>
+<li><a href="#">8단원</a></li>
+
+</ul>
+
+</div>
+
 <div class="earth">🌍</div>
+
 <div class="moon">🌕</div>
+
 <div class="rocket">🚀</div>
 
 <script>
-// 별 120개 생성
-for(let i=0;i<120;i++){
 
-    const star=document.createElement("div");
-    star.className="star";
-    star.innerHTML=Math.random()>0.5?"✦":"✧";
+/* 별 */
 
-    star.style.left=Math.random()*100+"vw";
-    star.style.top=Math.random()*100+"vh";
-    star.style.fontSize=(Math.random()*12+8)+"px";
-    star.style.animationDuration=(Math.random()*4+2)+"s";
-    star.style.animationDelay=(Math.random()*3)+"s";
+for(let i=0;i<180;i++){
 
-    document.body.appendChild(star);
+let s=document.createElement("div");
+
+s.className="star";
+
+s.innerHTML=Math.random()>0.5?"✦":"✧";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top=Math.random()*100+"vh";
+
+s.style.fontSize=(Math.random()*10+6)+"px";
+
+s.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(s);
+
 }
+
+/* 유성 */
+
+for(let i=0;i<6;i++){
+
+let m=document.createElement("div");
+
+m.className="meteor";
+
+m.style.left=Math.random()*100+"vw";
+
+m.style.top=Math.random()*40+"vh";
+
+m.style.animationDuration=(Math.random()*4+4)+"s";
+
+m.style.animationDelay=(Math.random()*5)+"s";
+
+document.body.appendChild(m);
+
+}
+
 </script>
 
 </body>
