@@ -299,14 +299,10 @@
   <nav class="mission-nav">
     <div class="nav-title">MISSION CONTROL<span>단원 선택</span></div>
     <ul class="unit-list" id="unitList">
-      <li class="unit-item active"><span class="num">1</span>힘과 운동</li>
-      <li class="unit-item"><span class="num">2</span>기체의 성질</li>
-      <li class="unit-item"><span class="num">3</span>물질의 상태변화</li>
-      <li class="unit-item"><span class="num">4</span>식물과 에너지</li>
-      <li class="unit-item"><span class="num">5</span>동물과 에너지</li>
-      <li class="unit-item"><span class="num">6</span>물질의 특성</li>
-      <li class="unit-item"><span class="num">7</span>수권과 해수의 순환</li>
-      <li class="unit-item"><span class="num">8</span>열과 우리 생활</li>
+      <li class="unit-item active"><span class="num">1</span>물질의 구성</li>
+      <li class="unit-item"><span class="num">2</span>전기와 자기</li>
+      <li class="unit-item"><span class="num">3</span>태양계</li>
+      <li class="unit-item" data-link="https://sciencej1.cafe24.com/html5/sci2/elementsymbol.html"><span class="num">4</span>식물과 에너지</li>
     </ul>
     <div class="nav-footer"><b>아화중학교</b><br>2학년 1반 박제민</div>
   </nav>
@@ -372,6 +368,11 @@
     item.addEventListener('click', ()=>{
       units.forEach(u=>u.classList.remove('active'));
       item.classList.add('active');
+
+      const link = item.getAttribute('data-link');
+      if(link){
+        window.open(link, 'unitWindow', 'width=1000,height=750,noopener');
+      }
     });
   });
 
