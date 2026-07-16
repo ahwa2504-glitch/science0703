@@ -37,7 +37,6 @@
 
   a{ color: inherit; text-decoration: none; }
 
-  /* ---------- starfield / particle canvas ---------- */
   #field{
     position: fixed;
     inset: 0;
@@ -48,7 +47,6 @@
       var(--bg-deep);
   }
 
-  /* ---------- shell layout ---------- */
   .shell{
     position: relative;
     z-index: 1;
@@ -57,7 +55,6 @@
     min-height: 100vh;
   }
 
-  /* ---------- sidebar ---------- */
   .sidebar{
     background: linear-gradient(180deg, var(--panel), var(--bg-deep) 90%);
     border-right: 1px solid var(--line);
@@ -185,7 +182,6 @@
     line-height: 1.6;
   }
 
-  /* ---------- main ---------- */
   main{
     position: relative;
     padding: 56px 64px 80px;
@@ -231,7 +227,6 @@
     line-height: 1.7;
   }
 
-  /* orbit signature graphic */
   .orbit-wrap{
     position: absolute;
     top: 30px;
@@ -263,7 +258,6 @@
   .electron.e1{ animation: spin1 7s linear infinite; }
   .electron.e2{ animation: spin2 11s linear infinite; }
 
-  /* content panel */
   .panel{
     margin-top: 44px;
     background: linear-gradient(180deg, var(--panel), var(--panel-2));
@@ -325,23 +319,19 @@
     border-radius: 8px;
   }
 
-  .go-btn{
-    margin-top: 22px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--cyan);
-    color: var(--bg-deep);
-    font-weight: 700;
-    font-size: 13.5px;
-    padding: 11px 20px;
-    border-radius: 9px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: 0 0 0 rgba(94,231,255,0);
+  /* 내부 임베드 사이트 */
+  .embed-wrap{
+    margin-top: 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
   }
-  .go-btn:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(94,231,255,0.25);
+  .embed-wrap iframe{
+    width: 100%;
+    height: 640px;
+    border: 0;
+    display: block;
   }
 
   footer.page-foot{
@@ -354,7 +344,6 @@
     .electron{ animation: none !important; }
   }
 
-  /* ---------- responsive ---------- */
   @media (max-width: 860px){
     .shell{ grid-template-columns: 1fr; }
     .sidebar{
@@ -365,6 +354,7 @@
     main{ padding: 40px 22px 60px; }
     .orbit-wrap{ display: none; }
     h1.hero-title{ font-size: 32px; }
+    .embed-wrap iframe{ height: 460px; }
   }
 </style>
 </head>
@@ -374,7 +364,6 @@
 
 <div class="shell">
 
-  <!-- ===================== SIDEBAR ===================== -->
   <aside class="sidebar">
     <div class="brand">
       <div class="school">Ahwha Middle School · Science Lab</div>
@@ -384,9 +373,7 @@
 
     <div>
       <div class="nav-label">Curriculum · 8 Units</div>
-      <ul class="units" id="unit-list">
-        <!-- JS가 채워 넣습니다 -->
-      </ul>
+      <ul class="units" id="unit-list"></ul>
     </div>
 
     <div class="sidebar-foot">
@@ -395,14 +382,13 @@
     </div>
   </aside>
 
-  <!-- ===================== MAIN ===================== -->
   <main>
     <div class="eyebrow"><span class="dot"></span> Science Class Portal</div>
 
     <h1 class="hero-title">오늘은 어떤 <span class="em">과학</span>을<br>탐구해볼까요?</h1>
     <p class="hero-desc">
       왼쪽 목록에서 학습할 단원을 클릭하세요. 4단원 <b>물질의 구성</b>을 선택하면
-      원소 기호 학습 사이트로 바로 연결됩니다.
+      원소 기호 학습 사이트가 이 화면 안에 바로 표시됩니다.
     </p>
 
     <div class="orbit-wrap" aria-hidden="true">
@@ -419,9 +405,7 @@
       </svg>
     </div>
 
-    <section class="panel" id="panel">
-      <!-- JS가 채워 넣습니다 -->
-    </section>
+    <section class="panel" id="panel"></section>
 
     <footer class="page-foot">아화중학교 2-1 박제민 · 과학 학습실</footer>
   </main>
@@ -429,71 +413,17 @@
 </div>
 
 <script>
-  // ---------------------------------------------------------------
-  // 단원 데이터
-  // ---------------------------------------------------------------
   const units = [
-    {
-      num: "01",
-      name: "물질의 특성",
-      desc: "밀도, 용해도, 끓는점, 녹는점 등 물질을 구별하는 고유한 성질을 배웁니다. 순물질과 혼합물을 구분하고, 실험을 통해 물질의 특성을 측정하는 방법을 익힙니다.",
-      icon: "flask",
-      link: null
-    },
-    {
-      num: "02",
-      name: "지권의 변화",
-      desc: "지구 내부 구조와 대륙 이동, 판 구조론을 학습합니다. 지진과 화산이 발생하는 원인, 그리고 암석의 순환 과정을 다룹니다.",
-      icon: "layers",
-      link: null
-    },
-    {
-      num: "03",
-      name: "빛과 파동",
-      desc: "빛의 직진, 반사, 굴절과 렌즈에 의한 상의 형성을 배웁니다. 더불어 파동의 종류와 소리의 성질까지 함께 탐구합니다.",
-      icon: "wave",
-      link: null
-    },
-    {
-      num: "04",
-      name: "물질의 구성",
-      desc: "원소, 원자, 분자의 개념과 원소 기호를 학습합니다. 이 단원을 클릭하면 원소 기호 연습 사이트로 이동합니다.",
-      icon: "atom",
-      link: "https://sciencej1.cafe24.com/html5/sci2/elementsymbol.html"
-    },
-    {
-      num: "05",
-      name: "식물과 에너지",
-      desc: "광합성과 증산 작용 등 식물이 에너지를 만들고 사용하는 과정을 배웁니다. 잎의 구조와 물질의 이동 경로도 함께 살펴봅니다.",
-      icon: "leaf",
-      link: null
-    },
-    {
-      num: "06",
-      name: "동물과 에너지",
-      desc: "소화, 순환, 호흡, 배설 등 동물의 에너지 대사와 관련된 기관계의 구조와 기능을 학습합니다.",
-      icon: "heart",
-      link: null
-    },
-    {
-      num: "07",
-      name: "전기와 자기",
-      desc: "전류, 전압, 저항의 관계와 자기장의 개념을 배웁니다. 전자석과 전동기의 원리까지 폭넓게 다룹니다.",
-      icon: "bolt",
-      link: null
-    },
-    {
-      num: "08",
-      name: "별과 우주",
-      desc: "태양계 천체의 특징과 별의 성질, 은하와 우주의 구조를 배웁니다. 우리가 속한 우주의 규모를 가늠해봅니다.",
-      icon: "star",
-      link: null
-    }
+    { num: "01", name: "물질의 특성", desc: "밀도, 용해도, 끓는점, 녹는점 등 물질을 구별하는 고유한 성질을 배웁니다. 순물질과 혼합물을 구분하고, 실험을 통해 물질의 특성을 측정하는 방법을 익힙니다.", icon: "flask", link: null },
+    { num: "02", name: "지권의 변화", desc: "지구 내부 구조와 대륙 이동, 판 구조론을 학습합니다. 지진과 화산이 발생하는 원인, 그리고 암석의 순환 과정을 다룹니다.", icon: "layers", link: null },
+    { num: "03", name: "빛과 파동", desc: "빛의 직진, 반사, 굴절과 렌즈에 의한 상의 형성을 배웁니다. 더불어 파동의 종류와 소리의 성질까지 함께 탐구합니다.", icon: "wave", link: null },
+    { num: "04", name: "물질의 구성", desc: "원소, 원자, 분자의 개념과 원소 기호를 학습합니다. 아래 화면에서 바로 원소 기호를 연습해보세요.", icon: "atom", link: "https://sciencej1.cafe24.com/html5/sci2/elementsymbol.html" },
+    { num: "05", name: "식물과 에너지", desc: "광합성과 증산 작용 등 식물이 에너지를 만들고 사용하는 과정을 배웁니다. 잎의 구조와 물질의 이동 경로도 함께 살펴봅니다.", icon: "leaf", link: null },
+    { num: "06", name: "동물과 에너지", desc: "소화, 순환, 호흡, 배설 등 동물의 에너지 대사와 관련된 기관계의 구조와 기능을 학습합니다.", icon: "heart", link: null },
+    { num: "07", name: "전기와 자기", desc: "전류, 전압, 저항의 관계와 자기장의 개념을 배웁니다. 전자석과 전동기의 원리까지 폭넓게 다룹니다.", icon: "bolt", link: null },
+    { num: "08", name: "별과 우주", desc: "태양계 천체의 특징과 별의 성질, 은하와 우주의 구조를 배웁니다. 우리가 속한 우주의 규모를 가늠해봅니다.", icon: "star", link: null }
   ];
 
-  // ---------------------------------------------------------------
-  // 아이콘 (선 스타일 SVG, 24x24 기준)
-  // ---------------------------------------------------------------
   const icons = {
     flask: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 15h9"/></svg>',
     layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 13l9 5 9-5"/><path d="M3 18l9 5 9-5"/></svg>',
@@ -507,7 +437,7 @@
 
   const unitListEl = document.getElementById('unit-list');
   const panelEl = document.getElementById('panel');
-  let activeIndex = 0; // 처음 화면은 1단원 소개로 시작
+  let activeIndex = 0;
 
   function renderSidebar(){
     unitListEl.innerHTML = units.map((u, i) => `
@@ -516,7 +446,6 @@
         <span class="num">${u.num}</span>
         <span class="icon">${icons[u.icon]}</span>
         <span class="label">${u.name}</span>
-        ${u.link ? '<span class="ext">↗ 외부</span>' : ''}
       </li>
     `).join('');
 
@@ -544,8 +473,10 @@
       <div class="panel-body">
         <p>${u.desc}</p>
         ${u.link
-          ? `<div class="note">🔗 이 단원은 외부 학습 사이트와 연결되어 있습니다</div><br>
-             <a class="go-btn" href="${u.link}" target="_blank" rel="noopener">원소 기호 학습 사이트로 이동 →</a>`
+          ? `<div class="note">🔗 아래 화면에서 학습 사이트를 바로 이용할 수 있습니다</div>
+             <div class="embed-wrap">
+               <iframe src="${u.link}" title="${u.name} 학습 사이트" loading="lazy"></iframe>
+             </div>`
           : `<div class="note">📘 학습 자료 준비 중입니다</div>`
         }
       </div>
@@ -556,18 +487,11 @@
     activeIndex = i;
     renderSidebar();
     renderPanel();
-    const u = units[i];
-    if(u.link){
-      window.open(u.link, '_blank', 'noopener');
-    }
   }
 
   renderSidebar();
   renderPanel();
 
-  // ---------------------------------------------------------------
-  // 배경 파티클(별) 애니메이션 - 가볍게
-  // ---------------------------------------------------------------
   (function starfield(){
     const wrap = document.getElementById('field');
     const canvas = document.createElement('canvas');
